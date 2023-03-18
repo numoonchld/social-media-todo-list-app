@@ -33,48 +33,45 @@ const Register = () => {
 
 
     return <>
-        <div
-            className="container d-flex flex-column justify-content-center align-items-center "
-            style={{ height: "99vh" }}
-        >
-            <section className='card p-5 w-50'>
-                <form onSubmit={handleUserRegistration}>
-                    <div className="mb-3">
-                        <label htmlFor="username" className="form-label">Username</label>
-                        <input
-                            type="text"
-                            className="form-control"
-                            id="username"
-                            aria-describedby="emailHelp"
-                            value={username}
-                            onChange={e => setUsername(e.target.value)}
-                        />
-                    </div>
-                    <div className="mb-3">
-                        <label htmlFor="email" className="form-label">Email address</label>
-                        <input
-                            type="email"
-                            className="form-control"
-                            id="email"
-                            aria-describedby="emailHelp"
-                            value={email}
-                            onChange={e => setEmail(e.target.value)}
-                        />
-                    </div>
-                    <div className="mb-3">
-                        <label htmlFor="password" className="form-label">Password</label>
-                        <input
-                            type="password"
-                            className="form-control"
-                            id="password"
-                            value={password}
-                            onChange={e => setPassword(e.target.value)}
-                        />
-                    </div>
-                    <button type="submit" className="btn btn-primary">Register</button>
-                </form>
-            </section>
-        </div>
+
+        <section className='card p-5 w-50'>
+            <form onSubmit={handleUserRegistration}>
+                <div className="mb-3">
+                    <label htmlFor="username" className="form-label">Username</label>
+                    <input
+                        type="text"
+                        className="form-control"
+                        id="username"
+                        aria-describedby="emailHelp"
+                        value={username}
+                        onChange={e => setUsername(e.target.value)}
+                    />
+                </div>
+                <div className="mb-3">
+                    <label htmlFor="email" className="form-label">Email address</label>
+                    <input
+                        type="email"
+                        className="form-control"
+                        id="email"
+                        aria-describedby="emailHelp"
+                        value={email}
+                        onChange={e => setEmail(e.target.value)}
+                    />
+                </div>
+                <div className="mb-3">
+                    <label htmlFor="password" className="form-label">Password</label>
+                    <input
+                        type="password"
+                        className="form-control"
+                        id="password"
+                        value={password}
+                        onChange={e => setPassword(e.target.value)}
+                    />
+                </div>
+                <button type="submit" className="btn btn-primary">Register</button>
+            </form>
+        </section>
+
     </>
 }
 

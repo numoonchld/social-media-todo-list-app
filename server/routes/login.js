@@ -21,7 +21,7 @@ router.post('/', async (req, res, next) => {
                     email: user.email,
                 }, process.env.JWT_SECRET)
 
-                return res.json({ status: 'ok', user: true, token })
+                return res.json({ status: 'ok', user, token })
             }
 
             else return res.json({ status: 'error', error: 'invalid credentials' })

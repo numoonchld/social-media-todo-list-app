@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { useAuthContext } from '../hooks/useAuthContext';
 
 const Login = () => {
 
@@ -7,6 +8,8 @@ const Login = () => {
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+
+    const { dispatch } = useAuthContext()
 
 
     const handleUserLogin = async (event) => {
@@ -27,6 +30,7 @@ const Login = () => {
 
         if (responseJSON.user) {
             localStorage.setItem("token", responseJSON.token)
+            dispatch({ type: "LOGIN", payload: responseJSON.user })
             alert('Login success!')
             navigate('/')
         }
