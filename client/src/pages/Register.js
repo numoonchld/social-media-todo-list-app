@@ -28,9 +28,7 @@ const Register = () => {
         const responseJSON = await response.json()
         console.log(responseJSON)
 
-        // if (responseJSON.status === 'ok') navigate('/login')
-
-
+        if (responseJSON.status === 'ok') navigate('/login')
     }
 
 

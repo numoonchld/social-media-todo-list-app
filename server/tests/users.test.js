@@ -26,3 +26,14 @@ describe("POST /user", () => {
         // expect(res.body.length).toBeGreaterThan(0);
     });
 });
+
+describe("POST /login", () => {
+    it("should login user", async () => {
+        const res = await request(app).post("/login").send({
+            email: 'raghu@email.com',
+            password: 'raghu'
+        });
+        expect(res.status).toBe(200);
+        // expect(res.body.length).toBeGreaterThan(0);
+    });
+});
