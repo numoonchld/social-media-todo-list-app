@@ -4,7 +4,6 @@ import { useAuthContext } from '../hooks/useAuthContext'
 
 const PostItem = ({ postItem }) => {
     const { user } = useAuthContext()
-    console.log(postItem)
 
     const [thisPostsComments, setThisPostsComments] = useState(postItem.comments)
 

@@ -6,6 +6,8 @@ import Login from './pages/Login'
 import Logout from './pages/Logout'
 import NavBar from './components/NavBar'
 import ToDos from './pages/ToDos'
+import Users from './pages/Users'
+import UserProfile from './pages/UserProfile'
 
 
 const App = () => {
@@ -24,6 +26,8 @@ const App = () => {
           <Route path='/logout' element={<Logout />} />
           <Route path='/' element={<Dashboard />} />
           <Route path='/todos' element={<ToDos />} />
+          <Route path='/users' element={<Users />} />
+          <Route path='/users/:userID' element={<UserProfile />} />
         </Routes>
       </div>
     </>
