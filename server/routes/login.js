@@ -15,22 +15,22 @@ router.post('/', async (req, res, next) => {
             const isPasswordValid = await bcrypt.compare(password, user.password)
 
             if (isPasswordValid) {
-
+                console.log({ user })
                 const token = jwt.sign({
-                    name: user.name,
+                    name: user.username,
                     email: user.email,
                 }, process.env.JWT_SECRET)
 
-                return res.json({ status: 'ok', user, token })
+                res.json({ status: 'ok', user, token })
             }
 
-            else return res.json({ status: 'error', error: 'invalid credentials' })
+            else res.json({ status: 'error', error: 'invalid credentials' })
         }
 
-        else return res.json({ status: 'error', user: false })
+        else res.json({ status: 'error', user: false })
     } catch (error) {
         console.log(error)
-        res.error({
+        res.json({
             status: 'error',
             error: 'error finding user'
         })

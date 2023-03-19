@@ -5,6 +5,7 @@ import Register from './pages/Register'
 import Login from './pages/Login'
 import Logout from './pages/Logout'
 import NavBar from './components/NavBar'
+import ToDos from './pages/ToDos'
 
 
 const App = () => {
@@ -22,7 +23,7 @@ const App = () => {
           <Route path='/register' element={<Register />} />
           <Route path='/logout' element={<Logout />} />
           <Route path='/' element={<Dashboard />} />
-          <Route path='/todos' element={<Dashboard />} />
+          <Route path='/todos' element={<ToDos />} />
         </Routes>
       </div>
     </>

@@ -12,6 +12,7 @@ const mongoose = require('mongoose')
 const indexRouter = require('./routes/index');
 const userRouter = require('./routes/user');
 const loginRouter = require('./routes/login');
+const todosRouter = require('./routes/todos');
 
 const app = express();
 app.use(cors())
@@ -27,6 +28,7 @@ mongoose.connect(process.env.MONGODB_URI)
 app.use('/', indexRouter);
 app.use('/user', userRouter);
 app.use('/login', loginRouter);
+app.use('/todos', todosRouter);
 
 
 module.exports = app;
