@@ -65,7 +65,26 @@ const ToDoItem = ({ todoItem }) => {
         setIsBusyWithEditingTodo(false)
     }
 
-    return <>
+    const [isThisToDoDeleted, setIsThisToDoDeleted] = useState(false)
+
+    const handleToDoDelete = async () => {
+
+        const response = await fetch(`http://localhost:3000/todos/delete-todo/${id}`, {
+            headers: {
+                'Content-type': 'application/json',
+                'x-access-token': localStorage.getItem('token')
+            },
+            method: 'DELETE',
+        })
+
+        const responseJSON = await response.json()
+        console.log({ responseJSON })
+        if (responseJSON.status === 'ok') {
+            setIsThisToDoDeleted(true)
+        }
+    }
+
+    return (!isThisToDoDeleted ? <>
         <div className="alert alert-light d-flex flex-column">
             <div className="d-flex flex-row justify-content-between" >
                 {toDoText}
@@ -113,12 +132,13 @@ const ToDoItem = ({ todoItem }) => {
                 <button
                     type="button"
                     className="btn btn-danger btn-sm mx-3"
+                    onClick={handleToDoDelete}
                 >
                     Delete
                 </button>
             </div>
         </div>
-    </>
+    </> : null)
 }
 
 export default ToDoItem

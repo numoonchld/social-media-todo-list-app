@@ -63,7 +63,7 @@ const ToDos = () => {
 
         if (responseJSON.status === 'ok') {
 
-            setAllUserToDos([...allUserToDos, responseJSON.todo])
+            setAllUserToDos([responseJSON.todo, ...allUserToDos])
         }
 
 
