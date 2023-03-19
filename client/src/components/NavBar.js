@@ -29,7 +29,7 @@ const NavBar = () => {
                         {user &&
                             <>
                                 <li className="nav-item">
-                                    <Link to="/todos" className="nav-link">To-Do</Link>
+                                    <Link to="/todos" className="nav-link">{user.username}'s To-Dos</Link>
                                 </li>
                                 <li className="nav-item">
                                     <Link to="/logout" className="nav-link">Logout</Link>
