@@ -1,4 +1,6 @@
 import React, { useState } from 'react'
+import { Link } from 'react-router-dom'
+
 
 const ToDoItemLite = ({ todoItem }) => {
     const { text, author } = todoItem
@@ -11,7 +13,7 @@ const ToDoItemLite = ({ todoItem }) => {
                 <span
                     className='fw-lighter fst-italic'
                 >
-                    user: {author}
+                    <Link to={`/users/${author}`}> userID: {author} </Link>
                 </span>
             </div>
         </div>

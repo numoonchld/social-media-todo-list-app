@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
 import { useAuthContext } from '../hooks/useAuthContext';
 import { useNavigate } from 'react-router-dom';
-import ToDoItemLite from '../components/ToDoItemLite'
+
 
 const UserProfile = () => {
     const navigate = useNavigate()

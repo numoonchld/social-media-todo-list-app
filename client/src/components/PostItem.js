@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { Link } from 'react-router-dom'
 import { useAuthContext } from '../hooks/useAuthContext'
 
 
@@ -42,7 +43,7 @@ const PostItem = ({ postItem }) => {
                 {postItem.text}
                 <br />
                 <span className='fw-lighter fst-italic'>
-                    user: {postItem.author}
+                    <Link to={`/users/${postItem.author}`}> userID: {postItem.author} </Link>
                 </span>
                 <br />
             </div>
@@ -73,7 +74,7 @@ const PostItem = ({ postItem }) => {
                         {comment.text}
                         <br />
                         <span className='fw-lighter fst-italic'>
-                            user: {comment.author}
+                            <Link to={`/users/${comment.author}`}> userID: {comment.author} </Link>
                         </span>
                     </div>)}
                 </div>
