@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const User = require('../models/user.model')
 const Post = require('../models/post.model')
-const bcrypt = require('bcryptjs')
+
 const jwt = require('jsonwebtoken')
 
 router.get('/', async (req, res, next) => {
@@ -30,47 +30,6 @@ router.get('/', async (req, res, next) => {
         })
     }
 });
-
-/*
-router.get('/user-posts', async (req, res, next) => {
-    const token = req.headers['x-access-token']
-    try {
-
-        const decodedJWT = jwt.verify(token, process.env.JWT_SECRET)
-
-        const { email } = decodedJWT
-        const user = await User.findOne({ email })
-
-        if (user) {
-
-            const allUserPosts = await Post.find({
-                author: user._id,
-            })
-
-            if (allUserPosts) res.json({
-                status: 'ok',
-                allUserPosts: allUserPosts.reverse(),
-            })
-
-            else res.json({
-                status: 'error',
-                error: 'error finding posts!'
-            })
-
-        }
-        else res.json({
-            status: 'error',
-            error: 'user not found!'
-        })
-    } catch (error) {
-        console.log(error)
-        return res.json({
-            status: 'error',
-            error: 'error getting posts!'
-        })
-    }
-});
-*/
 
 router.post('/', async (req, res, next) => {
     const token = req.headers['x-access-token']
@@ -113,7 +72,6 @@ router.post('/', async (req, res, next) => {
     }
 });
 
-
 router.post('/comment/:postID', async (req, res, next) => {
     const token = req.headers['x-access-token']
 
@@ -145,7 +103,12 @@ router.post('/comment/:postID', async (req, res, next) => {
                 })
             }
 
-
+            else {
+                res.json({
+                    status: 'error',
+                    error: 'error saving comment'
+                })
+            }
 
         }
         else res.json({
