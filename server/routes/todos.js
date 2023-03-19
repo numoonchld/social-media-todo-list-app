@@ -45,6 +45,46 @@ router.get('/', async (req, res, next) => {
     }
 });
 
+router.get('/other-users-todos', async (req, res, next) => {
+    const token = req.headers['x-access-token']
+    try {
+
+        const decodedJWT = jwt.verify(token, process.env.JWT_SECRET)
+        // console.log({ decodedJWT })
+
+        const { email } = decodedJWT
+        const user = await User.findOne({ email })
+
+        if (user) {
+
+            const allOtherUserToDos = await ToDo.find({
+                author: { $not: { $eq: user._id } },
+            })
+
+            if (allOtherUserToDos) res.json({
+                status: 'ok',
+                allOtherUserToDos: allOtherUserToDos.reverse(),
+            })
+
+            else res.json({
+                status: 'error',
+                error: 'error finding to-dos!'
+            })
+
+        }
+        else res.json({
+            status: 'error',
+            error: 'user not found!'
+        })
+    } catch (error) {
+        console.log(error)
+        return res.json({
+            status: 'error',
+            error: 'error getting todos!'
+        })
+    }
+});
+
 router.post('/', async (req, res, next) => {
     const token = req.headers['x-access-token']
     try {
