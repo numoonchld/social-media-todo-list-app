@@ -5,11 +5,11 @@ import { useAuthContext } from '../hooks/useAuthContext'
 const NavBar = () => {
 
     const { user } = useAuthContext()
-    console.log({ user })
+    
 
     return <>
         <nav className="navbar navbar-expand-lg bg-light">
-            <div className="container">
+            <div className="container px-5">
                 <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>
                 </button>
@@ -32,7 +32,7 @@ const NavBar = () => {
                                     <Link to="/todos" className="nav-link">{user.username}'s To-Dos</Link>
                                 </li>
                                 <li className="nav-item">
-                                    <Link to="/logout" className="nav-link">Logout</Link>
+                                    <Link to="/logout" className="nav-link mx-5">Logout</Link>
                                 </li>
                             </>
                         }

@@ -13,6 +13,7 @@ const indexRouter = require('./routes/index');
 const userRouter = require('./routes/user');
 const loginRouter = require('./routes/login');
 const todosRouter = require('./routes/todos');
+const postsRouter = require('./routes/posts');
 
 const app = express();
 app.use(cors())
@@ -29,6 +30,7 @@ app.use('/', indexRouter);
 app.use('/user', userRouter);
 app.use('/login', loginRouter);
 app.use('/todos', todosRouter);
+app.use('/posts', postsRouter);
 
 
 module.exports = app;

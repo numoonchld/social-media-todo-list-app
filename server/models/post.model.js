@@ -33,6 +33,6 @@ const Post = new mongoose.Schema({
     comments: [Comment]
 }, { timestamps: true })
 
-const model = mongoose.model('Todo', Todo)
+const model = mongoose.model('Post', Post)
 
 module.exports = model

@@ -124,6 +124,7 @@ const ToDos = () => {
             <hr />
             {allUserToDos.map(todoItem => <ToDoItem key={todoItem._id} todoItem={todoItem} />)}
         </section>
+        
         <section
             className='card p-5 w-75 bg-secondary text-light my-5'
         >
