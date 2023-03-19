@@ -10,7 +10,6 @@ const Comment = new mongoose.Schema({
     text: {
         type: String,
         required: true,
-        unique: true,
     },
     // post: {
     //     type: mongoose.Schema.Types.ObjectId,
@@ -28,7 +27,7 @@ const Post = new mongoose.Schema({
     text: {
         type: String,
         required: true,
-        unique: true,
+
     },
     comments: [Comment]
 }, { timestamps: true })

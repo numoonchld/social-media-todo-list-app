@@ -45,7 +45,7 @@ router.post('/', async (req, res, next) => {
             console.log({ postText })
             const newPost = await Post.create({
                 author: user._id,
-                text: postText
+                text: postText,
             })
 
             if (newPost) res.json({
