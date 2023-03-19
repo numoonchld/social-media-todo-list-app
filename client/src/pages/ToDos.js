@@ -75,7 +75,6 @@ const ToDos = () => {
             className='card p-5 w-75 my-5'
         >
             <h5 className='card-title'>Create new To-Do</h5>
-            <hr />
             <form onSubmit={handleAddTodo}>
                 <div className='input-group'>
                     <input

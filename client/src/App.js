@@ -15,8 +15,8 @@ const App = () => {
     <>
       <NavBar />
       <div
-        className="container d-flex flex-column justify-content-center align-items-center "
-        style={{ height: "90vh" }}
+        className="container d-flex flex-column justify-content-center align-items-center overflow-auto"
+        style={{ minHeight: "90vh" }}
       >
         <Routes>
           <Route path='/login' element={<Login />} />
