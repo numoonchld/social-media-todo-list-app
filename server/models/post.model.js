@@ -12,11 +12,11 @@ const Comment = new mongoose.Schema({
         required: true,
         unique: true,
     },
-    post: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: Post,
-        required: true,
-    }
+    // post: {
+    //     type: mongoose.Schema.Types.ObjectId,
+    //     ref: Post,
+    //     required: true,
+    // }
 }, { timestamps: true })
 
 const Post = new mongoose.Schema({
@@ -30,6 +30,7 @@ const Post = new mongoose.Schema({
         required: true,
         unique: true,
     },
+    comments: [Comment]
 }, { timestamps: true })
 
 const model = mongoose.model('Todo', Todo)
