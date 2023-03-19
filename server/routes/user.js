@@ -1,6 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const User = require('../models/user.model')
+const Post = require('../models/post.model')
+const ToDo = require('../models/todo.model')
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 
@@ -8,7 +10,6 @@ const jwt = require('jsonwebtoken')
 router.get('/', async (req, res, next) => {
 
   const token = req.headers['x-access-token']
-  console.log(req.body)
 
   try {
     const decodedJWT = jwt.verify(token, process.env.JWT_SECRET)
@@ -34,7 +35,7 @@ router.get('/', async (req, res, next) => {
 
   } catch (error) {
     console.log(error)
-    res.json({ status: 'error', error: 'error getting user' })
+    res.json({ status: 'error', error: 'error getting users' })
   }
 
 });
@@ -71,7 +72,7 @@ router.get('/:userID', async (req, res, next) => {
 
   } catch (error) {
     console.log(error)
-    res.json({ status: 'error', error: 'error registering user' })
+    res.json({ status: 'error', error: 'error getting user info' })
   }
 
 });
@@ -91,25 +92,37 @@ router.get('/user-profile/:userID', async (req, res, next) => {
       const { userID } = req.params
 
       const userInfo = await User.findById(userID)
+      const userToDos = await ToDo.find({ author: userID })
+      const userPosts = await Post.find({ author: userID })
 
-      if (userInfo) {
+      if (userInfo && userToDos && userPosts) {
         res.json({
           status: 'ok',
-          userInfo
+          userProfile: {
+            userInfo,
+            userToDos,
+            userPosts,
+          }
         })
       }
 
-      else {
-        res.json({
-          status: 'error',
-          error: 'could not retrieve user'
-        })
-      }
+      else res.json({
+        status: 'error',
+        error: 'error getting user profile'
+      })
+
+
     }
 
+    else {
+      res.json({
+        status: 'error',
+        error: 'user not validated'
+      })
+    }
   } catch (error) {
     console.log(error)
-    res.json({ status: 'error', error: 'error registering user' })
+    res.json({ status: 'error', error: 'error getting profile of user' })
   }
 
 });

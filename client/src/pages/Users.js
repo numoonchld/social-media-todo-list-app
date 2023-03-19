@@ -1,7 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+import { useAuthContext } from '../hooks/useAuthContext';
+import { useNavigate } from 'react-router-dom';
 
 const Users = () => {
+    const navigate = useNavigate()
+
+    const { user } = useAuthContext()
 
     const [allUsers, setAllUsers] = useState([])
 
@@ -23,7 +28,12 @@ const Users = () => {
     }
 
     useEffect(() => {
-        getAllUsers()
+        if (user) {
+            getAllUsers()
+        }
+        else {
+            navigate('/login')
+        }
     }, [])
 
     return <>
