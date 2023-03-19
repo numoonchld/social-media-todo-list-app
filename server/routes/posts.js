@@ -18,7 +18,7 @@ router.get('/', async (req, res, next) => {
 
         else res.json({
             status: 'error',
-            error: 'error finding to-dos!'
+            error: 'error finding posts!'
         })
 
 
@@ -26,11 +26,12 @@ router.get('/', async (req, res, next) => {
         console.log(error)
         return res.json({
             status: 'error',
-            error: 'error getting todos!'
+            error: 'error getting posts!'
         })
     }
 });
 
+/*
 router.get('/user-posts', async (req, res, next) => {
     const token = req.headers['x-access-token']
     try {
@@ -53,7 +54,7 @@ router.get('/user-posts', async (req, res, next) => {
 
             else res.json({
                 status: 'error',
-                error: 'error finding to-dos!'
+                error: 'error finding posts!'
             })
 
         }
@@ -65,10 +66,11 @@ router.get('/user-posts', async (req, res, next) => {
         console.log(error)
         return res.json({
             status: 'error',
-            error: 'error getting todos!'
+            error: 'error getting posts!'
         })
     }
 });
+*/
 
 router.post('/', async (req, res, next) => {
     const token = req.headers['x-access-token']
@@ -107,6 +109,54 @@ router.post('/', async (req, res, next) => {
         return res.json({
             status: 'error',
             error: 'error getting todos!'
+        })
+    }
+});
+
+
+router.post('/comment/:postID', async (req, res, next) => {
+    const token = req.headers['x-access-token']
+
+    try {
+
+        const decodedJWT = jwt.verify(token, process.env.JWT_SECRET)
+        const { email } = decodedJWT
+        const user = await User.findOne({ email })
+
+        if (user) {
+
+            const { postID } = req.params
+            console.log({ postID })
+            const { newCommentText } = req.body
+
+            const postToCommentOn = await Post.findById(postID)
+
+            postToCommentOn.comments.push({
+                author: user._id,
+                text: newCommentText
+            })
+
+            const updatedPost = await postToCommentOn.save()
+
+            if (updatedPost) {
+                res.json({
+                    status: 'ok',
+                    newComment: updatedPost.comments[updatedPost.comments.length - 1]
+                })
+            }
+
+
+
+        }
+        else res.json({
+            status: 'error',
+            error: 'user not found!'
+        })
+    } catch (error) {
+        console.log(error)
+        return res.json({
+            status: 'error',
+            error: 'error commenting on posts!'
         })
     }
 });

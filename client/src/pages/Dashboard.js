@@ -6,7 +6,6 @@ import { useAuthContext } from '../hooks/useAuthContext'
 const Dashboard = () => {
 
     const { user } = useAuthContext()
-    console.log({ user })
 
     const [postText, setPostText] = useState('')
 
