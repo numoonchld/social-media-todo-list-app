@@ -16,6 +16,8 @@ npm install
 npm run dev
 ```
 - the server is to run on `localhost:3000`
+- the app is published on Glitch - https://social-media-app-with-todo-list.glitch.me/
+  - but the Glitch spin up times are very slow
 
 ### start the react frontend
 - nagvigate inside the `client` folder
